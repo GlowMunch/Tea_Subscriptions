@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :subscription do
-    cost { 1.5 }
+    cost { Faker::Number.decimal(l_digits: 2) }
     status { 1 }
   end
 end

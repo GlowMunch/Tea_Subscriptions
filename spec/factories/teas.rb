@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :tea do
-    name { "MyString" }
+    name { Faker::Tea.variety }
     price { 1.5 }
     subscription { nil }
   end
