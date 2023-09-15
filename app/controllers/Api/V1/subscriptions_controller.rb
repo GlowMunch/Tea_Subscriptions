@@ -1,4 +1,5 @@
 class Api::V1::SubscriptionsController < ApplicationController
+
   def create
     @subscription = Subscription.new(subscription_params)
     if @subscription.save
@@ -18,9 +19,11 @@ class Api::V1::SubscriptionsController < ApplicationController
     render json: SubscriptionSerializer.new(@subscriptions)
   end
 
-  def show
-    @subscription = Subscription.find(subscription_params[:id])
-    render json: @subscription
+  def update
+    @subscription = Subscription.find(params[:id])
+    @subscription.update(status: params[:subscription][:status])
+
+    render json: ModifySerializer.success_message, status: 200
   end
 
   private

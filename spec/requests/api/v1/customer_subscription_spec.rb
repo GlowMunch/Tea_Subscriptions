@@ -29,7 +29,7 @@ RSpec.describe "customers Subsriptions API", type: :request do
       expect(customer.subscriptions.count).to eq(0)
     end
 
-    it "can cancel a customer subscription" do
+    it "can remove a customer subscription" do
       customer = create(:customer)
       post "/api/v1/customers/#{customer.id}/subscriptions", params: { subscription: { title: "test_subscription", price: 10.00, customer_id: customer.id, frequency: "monthly" } }
       expect(customer.subscriptions.count).to eq(1)
@@ -37,6 +37,18 @@ RSpec.describe "customers Subsriptions API", type: :request do
       delete "/api/v1/customers/#{customer.id}/subscriptions/#{customer.subscriptions.last.id}"
       expect(response.status).to eq(204)
       expect(customer.subscriptions.count).to eq(0)
+    end
+
+    it "can update a customer subscription - canceleld" do
+      customer = create(:customer)
+      post "/api/v1/customers/#{customer.id}/subscriptions", params: { subscription: { title: "test_subscription", price: 10.00, customer_id: customer.id, frequency: "monthly" } }
+      expect(customer.subscriptions.count).to eq(1)
+      expect(customer.subscriptions.last.status).to eq("active")
+
+      patch "/api/v1/customers/#{customer.id}/subscriptions/#{customer.subscriptions.last.id}", params: { subscription: { status: "cancelled" } }
+      expect(response.status).to eq(200)
+      expect(customer.subscriptions.last.status).to eq("cancelled")
+      expect(response.message).to eq("OK")
     end
 
     it "can show all customer subscriptions" do
