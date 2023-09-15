@@ -8,9 +8,14 @@ class Api::V1::SubscriptionsController < ApplicationController
     end
   end
 
+  def destroy
+    @subscription = Subscription.find(params[:id])
+    @subscription.destroy
+  end
+
   def index
-    @subscriptions = Subscription.all
-    render json: @subscriptions
+    @subscriptions = Subscription.where(customer_id: params[:customer_id])
+    render json: SubscriptionSerializer.new(@subscriptions)
   end
 
   def show
