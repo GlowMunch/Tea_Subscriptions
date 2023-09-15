@@ -1,24 +1,109 @@
-# README
+# Tea Subscription
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+## New Tea Subscription
+```js
+  POST /api/v1/customers/customer_id/subscriptions
+```
 
-* Ruby version
+### Validated Parameters
+<br>
 
-* System dependencies
+```| title | price | frequenty | status |```
+<br>
+<br>
 
-* Configuration
+### Example Request
+```json
+  {
+    "title": "Sleepy Collection",
+    "price": 10,
+    "frequency": "bi-weekly",
+    "status": "active",
+    "customer_id": 1
+  }
 
-* Database creation
+  Status: 201 Created
+```
 
-* Database initialization
+### Response
+```json
+{
+    "data": {
+        "id": "13",
+        "type": "subscription",
+        "attributes": {
+            "customer_id": 1,
+            "title": "Sleep Collection",
+            "price": 10,
+            "status": "active",
+            "frequency": "bi-weekly"
+        }
+    }
+}
+```
+<br>
+<hr>
 
-* How to run the test suite
+## Get Customer Subscriptions
+```js
+  GET /api/v1/customers/customer_id/subscriptions
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+### Example Request
+```json
+{
+    "data": [
+        {
+            "id": "1",
+            "type": "subscription",
+            "attributes": {
+                "customer_id": 1,
+                "title": "London Mix",
+                "price": 10,
+                "status": "active",
+                "frequency": "monthly"
+            }
+        },
+        {
+            "id": "2",
+            "type": "subscription",
+            "attributes": {
+                "customer_id": 1,
+                "title": "Decaf Supply",
+                "price": 15,
+                "status": "cancelled",
+                "frequency": "monthly"
+            }
+        }
+    ]
+}
+  Status: 200 OK
+```
+<br>
+<br>
 
-* Deployment instructions
+## Cancel Subscription
+```js
+  PATCH /api/v1/customers/:customer_id/subscriptions/subscription_id
+  ```
+```json
 
-* ...
+{
+    "successs": "OK"
+}
+  Status: 200 OK
+```
+
+## Delete Subscription
+
+```js
+  DELETE /api/v1/customers/:customer_id/subscriptions/subscription_id
+```
+```json
+
+{
+    "successs": "OK"
+}
+  Status: 200 OK
+```
