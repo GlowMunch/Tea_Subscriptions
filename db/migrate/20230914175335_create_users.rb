@@ -1,7 +1,7 @@
-class Createusers < ActiveRecord::Migration[7.0]
+class Createcustomers < ActiveRecord::Migration[7.0]
   def change
-    create_table :users do |t|
-      t.string :username
+    create_table :customers do |t|
+      t.string :customername
       t.string :password
 
       t.timestamps

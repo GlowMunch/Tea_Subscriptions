@@ -1,8 +1,8 @@
-class SubscriptionsController < ApplicationController
+class Api::V1::SubscriptionsController < ApplicationController
   def create
-    @subscription = Subscription.new(subscription_paramsparams)
+    @subscription = Subscription.new(subscription_params)
     if @subscription.save
-      render json: @subscription
+      render json: @subscription, status: 201
     else
       render json: { errors: @subscription.errors.full_messages }, status: 422
     end
@@ -21,6 +21,6 @@ class SubscriptionsController < ApplicationController
   private
 
   def subscription_params
-    params.require(:subscription).permit(:user_id, :plan_id)
+    params.require(:subscription).permit(:title, :price, :customer_id, :status, :frequency)
   end
 end

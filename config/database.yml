@@ -26,12 +26,12 @@ development:
   database: tea_subscriptions_development
 
   # The specified database role being used to connect to postgres.
-  # To create additional roles in postgres see `$ createuser --help`.
+  # To create additional roles in postgres see `$ createcustomer --help`.
   # When left blank, postgres will use the default role. This is
-  # the same name as the operating system user running Rails.
-  #username: tea_subscriptions
+  # the same name as the operating system customer running Rails.
+  #customername: tea_subscriptions
 
-  # The password associated with the postgres role (username).
+  # The password associated with the postgres role (customername).
   #password:
 
   # Connect on a TCP socket. Omitted by default since the client uses a
@@ -43,7 +43,7 @@ development:
   # If your server runs on a different port number, change accordingly.
   #port: 5432
 
-  # Schema search path. The server defaults to $user,public
+  # Schema search path. The server defaults to $customer,public
   #schema_search_path: myapp,sharedapp,public
 
   # Minimum log levels, in increasing order:
@@ -66,7 +66,7 @@ test:
 # Instead, provide the password or a full connection URL as an environment
 # variable when you boot the app. For example:
 #
-#   DATABASE_URL="postgres://myuser:mypass@localhost/somedatabase"
+#   DATABASE_URL="postgres://mycustomer:mypass@localhost/somedatabase"
 #
 # If the connection URL is provided in the special DATABASE_URL environment
 # variable, Rails will automatically merge its configuration values on top of
@@ -82,5 +82,5 @@ test:
 production:
   <<: *default
   database: tea_subscriptions_production
-  username: tea_subscriptions
+  customername: tea_subscriptions
   password: <%= ENV["TEA_SUBSCRIPTIONS_DATABASE_PASSWORD"] %>

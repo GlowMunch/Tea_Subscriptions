@@ -2,8 +2,8 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   namespace :api do
     namespace :v1 do
-      resources :users, only: [:create, :show, :update, :destroy] do
-        resources :subsriptions, only: [:create, :destroy]
+      resources :customers, only: [:create, :show, :update, :destroy] do
+        resources :subscriptions, only: [:create, :destroy, :index, :show]
       end
     end
   end
