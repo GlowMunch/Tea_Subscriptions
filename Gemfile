@@ -44,6 +44,7 @@ group :development, :test do
   gem "factory_bot_rails"
   gem "faker"
   gem 'jsonapi-serializer'
+  gem "simplecov"
 end
 
 group :test do
